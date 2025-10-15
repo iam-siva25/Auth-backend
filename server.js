@@ -12,7 +12,7 @@ const protectedRoutes = require('./routes/protected')
 
 app.use(cors({ 
     // 🔑 FIX: Specify the exact frontend URL instead of the wildcard
-    origin: 'https://authentication-xi-seven.vercel.app/', 
+    origin: 'https://authentication-xi-seven.vercel.app', 
     
     // This must remain true to send/receive cookies
     credentials: true 
