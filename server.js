@@ -13,7 +13,7 @@ const protectedRoutes = require('./routes/protected')
 // 🔑 FIX: Define an array of allowed origins to include localhost
 const allowedOrigins = [
     
-    'https://authentication-1uuq.vercel.app/',
+    'https://authentication-1uuq.vercel.app',
     'http://localhost:3000' // <-- ADDED for local development
 ];
 
