@@ -10,12 +10,25 @@ const PORT = process.env.PORT || 5000
 const authRoutes = require('./routes/auth');
 const protectedRoutes = require('./routes/protected')
 
-app.use(cors({ 
-    // 🔑 FIX: Specify the exact frontend URL instead of the wildcard
-    origin: 'https://authentication-xi-seven.vercel.app', 
-    
-    // This must remain true to send/receive cookies
-    credentials: true 
+// 🔑 FIX: Define an array of allowed origins to include localhost
+const allowedOrigins = [
+    'https://authentication-xi-seven.vercel.app',
+    'http://localhost:3000' // <-- ADDED for local development
+];
+
+// Configure CORS to check the origin against the allowed list
+app.use(cors({
+    origin: (origin, callback) => {
+        // Allow requests with no origin (like mobile apps or curl) 
+        // OR requests from one of the allowed origins.
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    // This must remain true to send/receive cookies (for authentication)
+    credentials: true
 }));
 
 app.use(express.json());
