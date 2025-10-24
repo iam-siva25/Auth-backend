@@ -12,7 +12,8 @@ const protectedRoutes = require('./routes/protected')
 
 // 🔑 FIX: Define an array of allowed origins to include localhost
 const allowedOrigins = [
-    'https://authentication-xi-seven.vercel.app',
+    
+    'https://authentication-1uuq.vercel.app/',
     'http://localhost:3000' // <-- ADDED for local development
 ];
 
@@ -41,6 +42,9 @@ mongoose.connect(process.env.MONGO_URI)
 // route registration
 app.use('/api/auth', authRoutes);
 app.use('/api/data', protectedRoutes)
+app.get('/test',(req,res)=>{
+  res.send("yes its working")
+})
 
 app.listen(PORT, ()=>{
   console.log(`server running on ${PORT}`);
